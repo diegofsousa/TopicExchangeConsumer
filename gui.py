@@ -33,7 +33,7 @@ class index(QDialog):
 		vboxAll.addWidget(self.listMessage)
 
 		
-		self.thConsumer = WaitingMessage(self.fieldTopic.displayText(), self.fieldBrokerIP.displayText(), self.listMessage)
+		
 
 		self.connect(self.buttonStartConsumer, SIGNAL("clicked()"), self.evt_consumer)
 		#self.connect(self.buttonStartBroker, SIGNAL("clicked()"), self.clean_messages)
@@ -49,6 +49,9 @@ class index(QDialog):
 				self.fieldTopic.setEnabled(False)
 				self.fieldBrokerIP.setEnabled(False)
 				self.buttonStartConsumer.setEnabled(False)
+				self.thConsumer = WaitingMessage(self.fieldTopic.displayText(), self.fieldBrokerIP.displayText(), self.listMessage)
+				print(self.fieldTopic.displayText())
+				print(self.fieldBrokerIP.displayText())
 				self.thConsumer.start()
 			except Exception as e:
 				msg = QMessageBox.information(self, "Erro!",
